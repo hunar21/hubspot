@@ -1,6 +1,6 @@
 package Ojbects;
 
-public record CallRecord(
+public record Records(
         int customerId,
         String callId,
         long startTimestamp, // inclusive

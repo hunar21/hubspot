@@ -1,6 +1,7 @@
 import Http.HttpJsonClient;
 import Http.Json;
 import Ojbects.*;
+import Ojbects.Records;
 
 import java.net.URI;
 import java.util.*;
@@ -22,12 +23,12 @@ public class Main {
        // System.out.println(json);
 
         // 2) Parse into Ojbects
-        CallRecord[] calls = GenericParser.parseArrayFlexible(json, CallRecord.class).toArray(new CallRecord[0]);
-        System.out.println("Total records: " + calls.length);
-        System.out.println("Call Structure = " + Arrays.toString(Arrays.stream(calls).toArray()));
+        List<Records> record = GenericParser.parseArrayFlexible(json, Records.class);
+        System.out.println("Total records: " + record.size());
+        //System.out.println("Structure = " + (Arrays.stream(Arrays.stream(record).toArray()).findFirst()));
 
         // 3) Compute results main function
-        List<ResultEntry> results = Solver.computeResults(calls);
+        List<ResultEntry> results = Solver.computeResults(record);
 
         // 4) Wrap and POST back
         ResultWrapper payload = new ResultWrapper(results);
